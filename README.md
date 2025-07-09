@@ -1,5 +1,5 @@
 # Tab-Manager
-<p align="center">
+<p align="left">
       <img src="https://img.shields.io/badge/Version-1.0-orange?style=flat" alt="Unity Version">
 </p>
 I open tabs all over the place from Figma to how to grow arugula so my browser gets cluttered fast. This extension helps you sort tabs alphabetically by domain for now and close search tabs from Yandex and Google to keep things tidy.
