@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Tab Manager",
+  "version": "1.0",
+  "description": "Сортирует вкладки по домену, блокирует отвлекающие вкладки во время работы и другое",
+  "permissions": ["tabs", "notifications", "storage", "bookmarks", "clipboardWrite", "clipboardRead", "idle","declarativeNetRequest","declarativeNetRequestWithHostAccess","webNavigation","scripting","activeTab"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "128": "icons/icon.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+  {
+    "resources": ["background.js","style.css","icon/icon.png"],
+    "matches": ["<all_urls>"]
+  }
+  
+  ],
+
+  "commands": {
+    "sort-tabs": {
+      "suggested_key": {
+        "default": "Alt+N",
+        "mac": "Alt+N"
+      },
+      "description": "Sort tabs by domain and title"
+    }
+  }
+}
