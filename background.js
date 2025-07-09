@@ -1,13 +1,18 @@
+function parseUrl(tab) {
+  try {
+    return new URL(tab.url);
+  } catch {
+    return null;
+  }
+}
+
 function sortTabs() {
   chrome.tabs.query({ currentWindow: true }, (tabs) => {
     const sorted = tabs
       .map(tab => {
-        try {
-          const url = new URL(tab.url);
-          return { id: tab.id, domain: url.hostname, title: tab.title };
-        } catch {
-          return null;
-        }
+        const url = parseUrl(tab);
+        if (!url) return null;
+        return { id: tab.id, domain: url.hostname, title: tab.title };
       })
       .filter(Boolean)
       .sort((a, b) => {
@@ -24,25 +29,24 @@ function sortTabs() {
 }
 
 function closeSearchTabs() {
-  chrome.tabs.query({}, (tabs) => {
-    const isYandex = navigator.userAgent.includes("YaBrowser");
+  const isYandex = navigator.userAgent.includes("YaBrowser");
 
+  chrome.tabs.query({}, (tabs) => {
     tabs.forEach(tab => {
-      try {
-        const url = new URL(tab.url);
-        if (isYandex) {
-          if (url.hostname === "yandex.ru" && url.pathname.startsWith("/search/")) {
-            chrome.tabs.remove(tab.id);
-          }
-        } else {
-          if (
-            (url.hostname === "www.google.com" || url.hostname === "www.google.ru") &&
-            url.pathname.startsWith("/search")
-          ) {
-            chrome.tabs.remove(tab.id);
-          }
+      const url = parseUrl(tab);
+      if (!url) return;
+
+      if (isYandex) {
+        if (url.hostname === "yandex.ru" && url.pathname.startsWith("/search/")) {
+          chrome.tabs.remove(tab.id);
         }
-      } catch (e) {
+      } else {
+        if (
+          (url.hostname === "www.google.com" || url.hostname === "www.google.ru") &&
+          url.pathname.startsWith("/search")
+        ) {
+          chrome.tabs.remove(tab.id);
+        }
       }
     });
   });
