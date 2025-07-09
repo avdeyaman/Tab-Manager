@@ -23,12 +23,19 @@
   ],
 
   "commands": {
-    "sort-tabs": {
+    "sortTabs": {
       "suggested_key": {
         "default": "Alt+N",
         "mac": "Alt+N"
       },
-      "description": "Sort tabs by domain and title"
+      "description": "Сортирует вкладки"
+    },
+    "close_search_tabs": {
+      "suggested_key": {
+        "default": "Alt+D",
+        "mac": "Alt+D"
+      },
+      "description": "Закрывает поисковые вкладки"
     }
   }
 }

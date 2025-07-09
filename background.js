@@ -61,3 +61,15 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     sendResponse({ result: "ok" });
   }
 });
+
+chrome.commands.onCommand.addListener((command) => {
+  if (command === "sortTabs") {
+    sortTabs();
+  }
+});
+
+chrome.commands.onCommand.addListener((command) => {
+  if (command === "close_search_tabs") {
+    closeSearchTabs();
+  }
+});
