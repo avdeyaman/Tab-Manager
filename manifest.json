@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Tab Manager",
   "version": "1.0",
-  "description": "Сортирует вкладки по домену, блокирует отвлекающие вкладки во время работы и другое",
+  "description": "Сортирует вкладки по домену и удаляет поисковые вкладки (Яндекс браузер/Chrome)",
   "permissions": ["tabs", "notifications", "storage", "bookmarks", "clipboardWrite", "clipboardRead", "idle","declarativeNetRequest","declarativeNetRequestWithHostAccess","webNavigation","scripting","activeTab"],
   "host_permissions": ["<all_urls>"],
   "action": {
